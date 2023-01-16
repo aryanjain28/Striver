@@ -46,9 +46,16 @@ def find_duplicate_sorted(arr):
         if sorted_arr[i] == sorted_arr[i+1]:
             return sorted_arr[i]
 
-input_arr = [1,3,4,2,2]
+def find_duplicate_frequency_arr(arr):
+    f_arr = [0] * (len(arr) - 1)
+    for n in arr:
+        if f_arr[n-1] == 0:
+            f_arr[n-1] = 1
+        else:
+            return n
+# input_arr = [1,3,4,2,2]
 input_arr = [1,3,4,3,2]
 # output = find_duplicate_brute(input_arr)
-output = find_duplicate_sorted(input_arr)
+output = find_duplicate_frequency_arr(input_arr)
 
 print(output)
