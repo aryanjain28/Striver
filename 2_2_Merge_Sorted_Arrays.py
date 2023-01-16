@@ -103,6 +103,25 @@ def merge_sorted_arrays_swap(arr1, arr2):
 
     return arr1 + arr2
 
+
+# gap method
+def merge_sorted_arrays_gap(arr1, arr2):
+
+    arr = arr1 + arr2
+    gap = len(arr) // 2 
+    while gap > 0:
+
+        i = 0
+        j = gap
+
+        if arr[i] > arr[j]:
+            arr[i], arr[j] = arr[j], arr[i]
+
+        gap = gap // 2
+
+    return arr[:len(arr1)], arr[len(arr2):]
+
+
 input_arr_l = [1,4,8,10]
 input_arr_r = [2,3,9]
 
