@@ -47,6 +47,23 @@ class Solution(object):
 
         return self.merge(left, right)
 
+    def binary_search(self, nums, target):
+
+        i = 0
+        j = len(nums) - 1
+
+        while (i <= j):
+            midpoint = (i + j) // 2
+
+            if nums[midpoint] == target:
+                return midpoint
+            elif nums[midpoint] > target:
+                j = midpoint - 1
+            else:
+                i = midpoint + 1
+
+        return -1
+
     def fourSum(self, unsorted_nums, target):
         """
         :type nums: List[int]
@@ -59,23 +76,35 @@ class Solution(object):
 
         nums = self.mergeSort(unsorted_nums)
 
-        for a in range(0, n-3):
-            for b in range(a+1, n-2):
-                i = b + 1               # next to b
-                j = n - 1               # last
+        # Using Binary Search
 
-                while i < j:
-                    if (target - (nums[a] + nums[b]) > nums[i] + nums[j]):
-                        i += 1
-                    elif (target - (nums[a] + nums[b]) < nums[i] + nums[j]):
-                        j -= 1
-                    else:
-                        mList.append([nums[a], nums[b], nums[i], nums[j]])
-                        i += 1
-                        j -= 1
+        for i in range(0, n-3):
+            for j in range(i+1, n-2):
+                for k in range(j+1, n-1):
+                    diff = target - (nums[i] + nums[j] + nums[k])
+                    index = self.binary_search(nums[k+1:], diff)
+                    if index != -1:
+                        mList.append(
+                            [nums[i], nums[j], nums[k], nums[k + 1 + index]])
+
+        # Using two pointer
+
+        # for a in range(0, n-3):
+        #     for b in range(a+1, n-2):
+        #         i = b + 1               # next to b
+        #         j = n - 1               # last
+
+        #         while i < j:
+        #             if (target - (nums[a] + nums[b]) > nums[i] + nums[j]):
+        #                 i += 1
+        #             elif (target - (nums[a] + nums[b]) < nums[i] + nums[j]):
+        #                 j -= 1
+        #             else:
+        #                 mList.append([nums[a], nums[b], nums[i], nums[j]])
+        #                 i += 1
+        #                 j -= 1
 
         mList = [list(x) for x in set(tuple(x) for x in mList)]
-        print(mList)
         return mList
 
 
