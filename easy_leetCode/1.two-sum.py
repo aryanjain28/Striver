@@ -7,23 +7,6 @@
 # @lc code=start
 class Solution(object):
 
-    def binary_search(self, nums, target):
-
-        i = 0
-        j = len(nums) - 1
-
-        while i < j:
-            mid = (i + j) // 2
-
-            if nums[mid] == target:
-                return mid
-            elif nums[mid] > target:
-                i = mid + 1
-            else:
-                j = mid - 1
-
-        return -1
-
     def twoSum(self, nums, target):
         """
         :type nums: List[int]
@@ -31,7 +14,12 @@ class Solution(object):
         :rtype: List[int]
         """
 
-        
+        mDict = {}
+
+        for i, n in enumerate(nums):
+            if n in mDict:
+                return [i, mDict[n]]
+            mDict[target - n] = i
 
 
 # @lc code=end
