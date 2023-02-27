@@ -15,20 +15,17 @@ class Solution(object):
 
         i = 0
         j = 0
-        mDict = {}
+        mArr = [0] * 26
         res = 0
 
         while j < len(s):
-            if s[j] not in mDict:
-                mDict[s[j]] = 1
-            else:
-                mDict[s[j]] += 1
-            if j - i + 1 - max(list(mDict.values())) <= k:
+            mArr[ord(s[j]) - 65] += 1
+            if j - i + 1 - max(mArr) <= k:
                 res = max(j - i + 1, res)
                 j += 1
             else:
-                mDict[s[i]] -= 1
-                mDict[s[j]] -= 1
+                mArr[ord(s[i]) - 65] -= 1
+                mArr[ord(s[j]) - 65] -= 1
                 i += 1
 
         return res
