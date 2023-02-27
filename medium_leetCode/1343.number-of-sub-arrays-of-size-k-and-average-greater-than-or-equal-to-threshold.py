@@ -19,7 +19,7 @@ class Solution(object):
         arr_sum = sum(arr[:k])
 
         while i <= len(arr) - k:
-            if arr_sum / k >= threshold:
+            if arr_sum >= threshold*k:
                 count += 1
             i += 1
             if i+k-1 < len(arr):
