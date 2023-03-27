@@ -13,6 +13,8 @@ class Solution(object):
         :rtype: int
         """
 
+        # 1st way
+        
         i = 0
         j = len(nums) - 1
         min_value = float("inf")
@@ -30,9 +32,26 @@ class Solution(object):
             else:
                 i = mid + 1
 
-        print(min_value, min_index)
+        if target > nums[-1]:
+            i = 0
+            j = min_index - 1
+        else:
+            i = min_index
+            j = len(nums) - 1
 
-        
+        while i <= j:
+            mid = (i + j) // 2
+            if nums[mid] == target:
+                return mid
+
+            if target < nums[mid]:
+                j = mid - 1
+            else:
+                i = mid + 1
+
+        return -1
+
+        # 2nd way 
 
         # while i <= j:
         #     mid = (i + j) // 2
@@ -51,11 +70,8 @@ class Solution(object):
         #             j = mid - 1
         #         else:
         #             i = mid + 1
-
         # return -1
-
-
 # @lc code=end
-print(Solution().search([4, 5, 6, 7, 0, 1, 2], 8))
-print(Solution().search([5, 1, 3], 5))
-print(Solution().search([4, 5, 6, 7, 8, 0, 2, 3], 8))
+# print(Solution().search([4, 5, 6, 7, 0, 1, 2], 8))
+# print(Solution().search([5, 1, 3], 5))
+# print(Solution().search([4, 5, 6, 7, 8, 0, 2, 3], 8))
