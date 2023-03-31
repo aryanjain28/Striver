@@ -6,9 +6,6 @@
 
 # @lc code=start
 
-import bisect
-
-
 class Solution(object):
 
     def getMinMax(self, products, searchStr, type):
@@ -47,16 +44,23 @@ class Solution(object):
 
         products.sort()
 
+        # print(products)
+
         res = []
         for i, _ in enumerate(searchWord):
 
             c = searchWord[:i+1]
-            index = bisect.bisect_left(products, c)
+
+            # res.append(
+            #     [r for r in products[index: index + 3] if r.startswith(c)])
+
+            index = self.getMinMax(products, c, -1)
+            # max_value = self.getMinMax(products, searchWord[:index + 1], 1) + 1
+
+            # print(c, index)
+
             res.append(
                 [r for r in products[index: index + 3] if r.startswith(c)])
-
-            # min_value = self.getMinMax(products, searchWord[:index + 1], -1)
-            # max_value = self.getMinMax(products, searchWord[:index + 1], 1) + 1
 
             # res.append(products[
             #     min_value:
