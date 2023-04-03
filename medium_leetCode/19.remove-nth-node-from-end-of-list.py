@@ -20,32 +20,51 @@ class Solution(object):
         :rtype: ListNode
         """
 
-        # Using LEN (length) - O(n) 
-        LEN = 0
-        curr = head
-        while curr:
-            LEN += 1
-            curr = curr.next
+        # Using two pointers.
+        dummy = ListNode()
+        dummy.next = head
 
-        if LEN < 2:
-            return None
+        slow = dummy
+        fast = head
 
-        LEN -= (n+1)
-        curr = head
+        while n > 0:
+            fast = fast.next
+            n -= 1
 
-        if LEN >= 0:
-            while LEN > 0:
-                LEN -= 1
-                curr = curr.next
+        while fast:
+            fast = fast.next
+            slow = slow.next
 
-            curr.next = curr.next.next
-            return head
+        slow.next = slow.next.next
 
-        else:
-            while LEN < 0:
-                LEN += 1
-                curr = curr.next
+        return dummy.next
 
-            return curr
+        # Using LEN (length) - O(n)
+        # LEN = 0
+        # curr = head
+        # while curr:
+        #     LEN += 1
+        #     curr = curr.next
+
+        # if LEN < 2:
+        #     return None
+
+        # LEN -= (n+1)
+        # curr = head
+
+        # if LEN >= 0:
+        #     while LEN > 0:
+        #         LEN -= 1
+        #         curr = curr.next
+
+        #     curr.next = curr.next.next
+        #     return head
+
+        # else:
+        #     while LEN < 0:
+        #         LEN += 1
+        #         curr = curr.next
+
+        #     return curr
 
 # @lc code=end
