@@ -17,7 +17,29 @@ class Solution(object):
         :rtype: bool
         """
 
-        # One WAY: reversing completely and checking
+        # Using Stack
+        mStack = []
+        dummy = ListNode(0, head)
+        slow = fast = dummy
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            mStack.append(slow.val)
+
+        slow = slow.next
+
+        # Odd
+        if fast == None:
+            mStack.pop()
+
+        while slow:
+            if slow.val != mStack.pop():
+                return False
+            slow = slow.next
+
+        return True
+
+        # another WAY: reversing completely and checking
         # reversing
         # reverse = None
         # curr = head
