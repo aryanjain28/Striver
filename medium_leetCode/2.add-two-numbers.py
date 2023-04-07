@@ -23,21 +23,20 @@ class Solution(object):
         head = ListNode()
         curr = head
         extra = 0
-        curr1 = l1
-        curr2 = l2
 
-        while curr1 or curr2:
-            val1 = curr1.val if curr1 else 0
-            val2 = curr2.val if curr2 else 0
+        while l1 or l2:
+            val1 = l1.val if l1 else 0
+            val2 = l2.val if l2 else 0
+
             sum_val = (val1 + val2 + extra)
-            extra = 1 if sum_val >= 10 else 0
+            extra = sum_val // 10
 
             # create node -> sum_Val
             curr.next = ListNode(sum_val % 10, None)
             curr = curr.next
 
-            curr1 = curr1.next if curr1 else curr1
-            curr2 = curr2.next if curr2 else curr2
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
 
         if extra > 0:
             curr.next = ListNode(1, None)
