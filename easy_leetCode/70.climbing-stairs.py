@@ -5,38 +5,22 @@
 #
 
 # @lc code=start
-
-import math
-
-
 class Solution(object):
     def climbStairs(self, n):
         """
         :type n: int
         :rtype: int
         """
-        LEN = n
-        res = 0
-        n_one = n
-        n_two = 0
-        while True:
 
-            # calculate
-            res += math.comb(LEN, n_one)
+        fn1, fn2 = 1, 1
+        for _ in range(2, n+1):
+            fn1, fn2 = fn2, fn1 + fn2
 
-            # even
-            if n % 2 == 0:
-                if n_one == 0:
-                    return res
-            # odd
-            else:
-                if n_one == 1:
-                    return res
-
-            n_one -= 2
-            n_two += 1
-            LEN -= 1
+        return fn2
 
 
+
+        
 # @lc code=end
-print(Solution().climbStairs(10))
+Solution().climbStairs(6)
+
