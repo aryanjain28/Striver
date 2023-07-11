@@ -8,16 +8,18 @@ def subseq_k(nums, k):
 
         if curr == k:
             print(arr)
-            return
+            return True
 
         if index >= n:
-            return
+            return False
 
-        # pick
-        rec(index+1, arr + [nums[index]], curr + nums[index])
+        if rec(index+1, arr + [nums[index]], curr + nums[index]):
+            return True
 
-        # not pick
-        rec(index+1, arr, curr)
+        if rec(index+1, arr, curr):
+            return True
+
+        return False
 
     return rec(0, [], 0)
 
